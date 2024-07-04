@@ -1,0 +1,17 @@
+{
+  "name": "07-nodemodules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 123456789",
+    "start": "HOST=localhost PORT=1234 node index"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}

@@ -34,5 +34,3 @@ console.log(`------*------
 // $ Ctrl + C 
 
 /* -------------------------------------------- */
-console.log(`nodejs`)
-console.log(`******** ready nodemon *******`)
