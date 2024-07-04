@@ -18,6 +18,7 @@ app.get("/", (req, res,next) =>{
 //    console.log('first')
 //    next()
 //! next() den sonra hata verir.
+//! next('route)  Bu route için bir sonraki handler'a geçer.
 //    res.send('Middleware')
 
 
@@ -32,6 +33,15 @@ if(req.query.coursName == 'clarusway'){
   
 })
 
+const middlewareFunctin = (req, res, next) =>{
+    console.log('first')
+    next();
+}
+//? app.get('/', (middlewareFunctin) // bu sekilde de kullanabiliriz ama use kullanilir.
+app.use(middlewareFunctin)
+
+//? birden fazla middleware'i ayri fonksiyonlar halinde tanimladigimizda app ee tanimlama islemi ;
+//* app.use(middlewareFunctin , middlewareFunctin2 ) yazabilirim.
 
 app.get("/", (req, res) => {
 console.log('route-path calist')
