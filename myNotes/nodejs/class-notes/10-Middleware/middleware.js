@@ -4,6 +4,7 @@
 ------------------------------------------------------- */
 
 const express = require("express");
+const middlewares = require("./middlewares");
 const app = express();
 
 require("dotenv").config();
@@ -43,6 +44,8 @@ app.use(middlewareFunctin)
 //? birden fazla middleware'i ayri fonksiyonlar halinde tanimladigimizda app ee tanimlama islemi ;
 //* app.use(middlewareFunctin , middlewareFunctin2 ) yazabilirim.
 
+
+
 app.get("/", (req, res) => {
 console.log('route-path calist')
 res.send('Middleware')
@@ -51,6 +54,11 @@ res.send('Middleware')
 // req.query ='soner'
 // res.send('asdas')
 // })
+
+
+// const middlewares = require('./middlewares/index');
+
+
 
 /* ------------------------------------------------------- */
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
