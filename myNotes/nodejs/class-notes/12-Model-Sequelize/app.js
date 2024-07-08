@@ -72,7 +72,7 @@ field:'Custom Field Name',
 /* -------------------------------- */
 /* -------------------------------- */
 title:{
-    type: DataTypes.STRING(256),
+type: DataTypes.STRING(256),
 allowNull:false,
 
 },
@@ -98,7 +98,7 @@ defaultValue:false,
 })
 // sequelize.sync();
 // sequelize.sync({force:true})
-// sequelize.sync({alter:true});
+//  sequelize.sync({alter:true});
 
 sequelize.authenticate()
 .then(()=> console.log('** DB CONNECTED ***'))
@@ -111,18 +111,47 @@ sequelize.authenticate()
 //*------------------------------------------------------- *//
 const router = express.Router()
 
-router.post('/', (req,res)=>{
-    const receivedData = req.body
-    console.log(receivedData)
+router.post('/', async (req, res) => {
+
+    // const receivedData = req.body
+    // // console.log(receivedData)
+
+    // const data = await Todo.create({
+    //     title: receivedData.title,
+    //     description: receivedData.description,
+    //     priority: receivedData.priority,
+    //     isDone: receivedData.isDone
+    // })
+    // // console.log(data)
+
+    const data = await Todo.create(req.body)
+    // console.log(data)
+
+    res.status(201).send({
+        error: false,
+        result: data.dataValues
+    })
+
 })
 
+router.get('/', async (req, res) => {
+    const data = await Todo.findAll()
+    
+    res.status(200).send({
+        error: false,
+        result: data,
+        
+    })
+   
+});
 
-
-
-
-//*------------------------------------------------------- *//
-//*------------------------------------------------------- *//
 app.use(router)
+
+
+ 
+//*------------------------------------------------------- *//
+//*------------------------------------------------------- *//
+
 
 // continue from here...
 
