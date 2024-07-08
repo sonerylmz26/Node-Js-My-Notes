@@ -46,6 +46,36 @@ const PORT =process.env.PORT || 3000
 //* Burada import yaptik artik burada router adli dosyyi kullanabiliriz.
 const router = require('./Router/router')
 
+router.get(/\/abc|\/acd/, (req, res) => {
+    res.send("<h1>path matched</h1");
+   })
+router.get(/\/a\d{1}c{2}|\/a\d{1}c{3}/, (req, res) => {
+    res.send("path matched");
+})
+ router.get(/Hello$/, (req, res) =>  {
+    res.send('<h1>Route Fourth</h1>')
+    })
+
+   router.get(/^Hello$/, (req, res) => {
+    res.send('<h1>Route Fourth</h1>')
+   })
+
+
+   const students = [{
+    id: 1,
+    name: "Alex",
+   },
+   {
+    id: 2,
+    name: "Steve",
+   }];
+
+   router.get("/students", (req, res) => {
+    res.json(students);
+   });
+
+
+
 app.use(router)
 app.listen(PORT,HOST, ()=> console.log(`Running on http://${HOST}:${PORT}`))
 

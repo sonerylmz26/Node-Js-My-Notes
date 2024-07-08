@@ -5,8 +5,7 @@
 
 // const route = express.Router(); 
 //? OR
-const route = require('express').Router();
-
+const router = require('express').Router();
 
 
 
