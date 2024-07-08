@@ -14,9 +14,9 @@ const PORT = process.env.PORT || 8000;
 // Accept json data:
 app.use(express.json())
 
-app.all('/', (req, res) => {
-    res.send('WELCOME TO TODO API')
-})
+// app.all('/', (req, res) => {
+//     res.send('WELCOME TO TODO API')
+// })
 
 //* -------------------------------------------------------*//
 //Sequlize data:
@@ -55,6 +55,9 @@ const Todo = sequelize.define('todos', {
 /* -------------------------------- */
 
 const Todo = sequelize.define('todos', {
+
+
+    /* -------------------------------- *
 id:{
 type: DataTypes.INTEGER,
 allowNull: false,
@@ -66,15 +69,60 @@ autoIncrement:true,
 field:'Custom Field Name',
 
 },
+/* -------------------------------- */
+/* -------------------------------- */
+title:{
+    type: DataTypes.STRING(256),
+allowNull:false,
+
+},
+description: DataTypes.TEXT,
+// description:{
+
+// },
+priority:{
+    // 1:High , 0:Normal, -1:Low
+    type: DataTypes.TINYINT,
+    allowNull:false,
+    defaultValue:0,
+},
+isDone:{
+type:DataTypes.BOOLEAN,
+allowNull:false,
+defaultValue:false,
+},
+
+// createAt:{},updateAt:{}, bunlari otomatik yapiyor.
 
 
 })
+// sequelize.sync();
+// sequelize.sync({force:true})
+// sequelize.sync({alter:true});
+
+sequelize.authenticate()
+.then(()=> console.log('** DB CONNECTED ***'))
+.catch(()=> console.log('** DB not CONNECTED ***'))
+//*------------------------------------------------------- *//
+//*------------------------------------------------------- *//
+//*------------------------------------------------------- *//
+//*------------------------------------------------------- *//
+ 
+//*------------------------------------------------------- *//
+const router = express.Router()
+
+router.post('/', (req,res)=>{
+    const receivedData = req.body
+    console.log(receivedData)
+})
 
 
+
+
+
 //*------------------------------------------------------- *//
 //*------------------------------------------------------- *//
-//*------------------------------------------------------- *//
-//*------------------------------------------------------- *//
+app.use(router)
 
 // continue from here...
 
