@@ -11,7 +11,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 8080;
 const router = express.Router();
 
-/* ------------------------------------------------------- *
+/* ------------------------------------------------------- */
 //! THROW:
 router.get('/user/:id', function (req, res) {
 
@@ -25,7 +25,7 @@ router.get('/user/:id', function (req, res) {
 //     message:'Hello World'
 //    })
 
-
+res.errorStatusCode = 401
 if(isNaN(req.params.id)){
  throw new Error('The Id must be Number');
 
@@ -38,7 +38,7 @@ if(isNaN(req.params.id)){
 
 
 
-/* ------------------------------------------------------- */
+/* ------------------------------------------------------- *
 //! TRY-CATCH:
 
 
@@ -50,30 +50,61 @@ try{
         throw new Error('The Id must be Number');
        
        }else{
-           res.send('id is true')
+        res.status(200).send({
+            error:true,
+            message:'Id is Number Everything is good',
+            method:req.method 
+        })
        }
 } catch(err){
-    
+  // next(error) ile hatayı errorHandler'a gönderebiliriz:
+       // next(err)
+    res.status(400).send({
+        error:true,
+        message:err.message
+    })
 }
 
 
 
 });
 
-
-
-
-/* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
 
 
 
 
+/* ------------------------------------------------------- */
+/* ------------------------------------------------------- */
+/* ------------------------------------------------------- */
+/* ------------------------------------------------------- */
+/* ------------------------------------------------------- */
+/* ------------------------------------------------------- */
 
 
+/* ------------------------------------------------------- */
+//! ERROR-HANDLER:
+// ErrorHandler 4 parametreli olmak zorunda. Hata yakalayıcı parametre 1. parametredir.
+// ErrorHandler en sonda yer almalı (sayfanın en altında)
+// Error handler son middleware olmalı.
 
+const errorHandler = (error, req,res,next)=>{
+    console.log('The errorHandler is working')
+    const statusCode = res?.errorStatusCode || 401
+    res.status(statusCode).send({
+        error:true,
+        message:error.message,
+        cause:error.cause,
+        stack:error.stack
+    })
+    
+    
+    }
+/* ------------------------------------------------------- */
 
 app.use(router)
+// Error handler son middleware olmalı.
+app.use(errorHandler)
 app.listen(PORT, ()=>{
     console.log("Running: http://127.0.0.1:" + PORT)
 } )
