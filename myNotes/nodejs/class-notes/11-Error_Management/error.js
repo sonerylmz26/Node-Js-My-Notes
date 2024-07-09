@@ -11,7 +11,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 8080;
 const router = express.Router();
 
-/* ------------------------------------------------------- */
+/* ------------------------------------------------------- *
 //! THROW:
 router.get('/user/:id', function (req, res) {
 
@@ -69,12 +69,43 @@ try{
 
 });
 
+/* ------------------------------------------------------- *
+//!  ASYNC:
+
+const asyncFunction = async () => {
+throw new Error('Async-Error is Active');
+};
+
+app.get('/async', async (req,res,next)=>{
+
+await asyncFunction()
+.then() // hata yok alani
+.catch((err) => {
+  next(err);
+}) // hata varsa burayi kullan.
+})
+
+
 /* ------------------------------------------------------- */
+//! express-async-errors
+//! $ npm i express-async-errors    
+
+// Async fonksiyonlardaki hataları errorHandler'a yönlendir:
+require('express-async-errors')
+
+const asyncFunction = async () => {
+    throw new Error('async-error')
+}
+
+app.get('/async', async (req, res, next) => {
+   
+    // await asyncFunction()
+    // res.errorStatusCode = 400
+    throw new Error('async-error', { cause: 'async function içinde bir hatadır.' })
+
+})
 
 
-
-
-/* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
@@ -102,7 +133,7 @@ const errorHandler = (error, req,res,next)=>{
     }
 /* ------------------------------------------------------- */
 
-app.use(router)
+// app.use(router)
 // Error handler son middleware olmalı.
 app.use(errorHandler)
 app.listen(PORT, ()=>{
