@@ -29,7 +29,7 @@ require('express-async-errors')
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
-app.use(require('../ass-1/app/routes/bookRoute.js'))
+app.use(require('./app/routes/bookRoute.js'))
 /* ------------------------------------------------------- */
 //? Error Handler
 app.use(require('./app/middlewares/errorHandler.js'))
