@@ -2,7 +2,7 @@
 
 /* ------------------------------------------------------- */
 const express = require('express');
-const server = express();
+const app = express();
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- */
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001
 
 /* ------------------------------------------------------- */
 // Accept json data and convert to object:
-server.use(express.json())
+app.use(express.json())
 
 // AsyncErrors to errorHandler:
 require('express-async-errors')
@@ -29,11 +29,12 @@ require('express-async-errors')
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
+app.use(require('../ass-1/app/routes/bookRoute.js'))
 /* ------------------------------------------------------- */
 //? Error Handler
-server.use(require('./app/middlewares/errorHandler.js'))
+app.use(require('./app/middlewares/errorHandler.js'))
 /* ------------------------------------------------------- */
-server.listen(PORT, ()=>{
+app.listen(PORT, ()=>{
     console.log("Running: http://127.0.0.1:" + PORT)
 })
 

@@ -32,11 +32,16 @@ const BookModelData = sequelize.define('books', {
     },
   });
 
-//   sequelize.sync()
-// sequelize.sync({ alter: true })
+  sequelize.sync()
+  .then(() => {
+      console.log('* DB Synced *');
+      return sequelize.authenticate();
+  })
+  .then(() => {
+      console.log('* DB Connected *');
+  })
+  .catch(error => {
+      console.error('* DB Not Connected *', error);
+  });
 
-sequelize.authenticate()
-    .then(() => console.log('* DB Connected *'))
-    .catch(() => console.log('* DB Not Connected *'))
-
-  module.exports =BookModelData;
+  module.exports = BookModelData;
