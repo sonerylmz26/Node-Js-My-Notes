@@ -43,3 +43,7 @@ title: {
     collection:'todos',
     timestamps:true
 })
+
+module.exports = {
+    
+}
