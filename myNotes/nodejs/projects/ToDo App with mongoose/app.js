@@ -15,7 +15,7 @@ require('express-async-errors')
 require('dotenv').config()
 const PORT = process.env.PORT || 3002;
 //? ************************************************************ */
-app.all('/', () => {
+app.get('/', (req,res) => {
   res.send({
     message:'Welcome Todo App with MongoDB'
   })
