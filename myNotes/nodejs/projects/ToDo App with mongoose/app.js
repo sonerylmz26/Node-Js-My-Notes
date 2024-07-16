@@ -6,11 +6,13 @@ const app = express();
 /* ------------------------------------------------------- */
 // Accept json data and convert to object:
 app.use(express.json())
-
+//? ************************************************************ */
 // AsyncErrors to errorHandler:
 require('express-async-errors')
-
 /* ------------------------------------------------------- */
+//? ************************************************************ */
+const mongoDb = require('./src/dbConnection')
+mongoDb()
 //? ************************************************************ */
 require('dotenv').config()
 const PORT = process.env.PORT || 3002;
