@@ -1,7 +1,9 @@
 'use strict';
-//? ************************************************************ */
+
 const express = require('express');
 const app = express();
+
+
 //? ************************************************************ */
 /* ------------------------------------------------------- */
 // Accept json data and convert to object:
@@ -15,13 +17,13 @@ require('express-async-errors')
 // mongoDb()
 //? ************************************************************ */
 require('dotenv').config()
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3002;
 //? ************************************************************ */
-// app.get('/', (req,res) => {
-//   res.send({
-//     message:'Welcome Todo App with MongoDB'
-//   })
-// })
+app.get('/', (req,res) => {
+  res.send({
+    message:'Welcome Todo App with MongoDB'
+  })
+})
 
 
 
@@ -29,11 +31,11 @@ const PORT = process.env.PORT || 3003;
 //? ************************************************************ */
 //? ************************************************************ */
 //? ************************************************************ */
-const routes = require('./src/routes/toDoAppRoutes')
-app.use(routes)
+// const routes = require('./src/routes/toDoAppRoutes')
+// app.use(routes)
 //? ************************************************************ */
-const errorHandler = require('./src/middlewares/errrorHandler')
-app.use(errorHandler)
+// const errorHandler = require('./src/middlewares/errrorHandler')
+// app.use(errorHandler)
 //? ************************************************************ */
 
 app.listen(PORT, () => {
