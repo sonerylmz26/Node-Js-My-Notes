@@ -7,11 +7,12 @@ const Home = () => {
   const [tutorials, setTutorials] = useState([])
 
   const getTutorials = async () => {
-    const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials/"
+    const BASE_URL = "http://127.0.0.1:3003/todo/"
     try {
       // const res = await axios(BASE_URL)
       // setTutorials(res.data)
-      const { data } = await axios(BASE_URL)
+      const { data:{data} } = await axios(BASE_URL)
+      console.log(data)
       setTutorials(data)
     } catch (error) {
       console.log(error)

@@ -6,6 +6,7 @@ const {Schema , model} = require('mongoose')
 const ToDoShema = new Schema({
 //id
 
+
 title: {
         type:String,
         trim:true,
@@ -44,6 +45,12 @@ title: {
     timestamps:true
 })
 
-module.exports = {
-    
-}
+ToDoShema.set('toJSON', {
+    transform: (doc,ret ) => {
+      ret.id = ret._id
+      delete ret._id // _id silme
+      delete ret._v
+    }
+})
+
+    module.exports = model('Todo', ToDoShema)

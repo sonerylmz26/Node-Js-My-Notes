@@ -12,6 +12,8 @@ app.use(express.json())
 // AsyncErrors to errorHandler:
 require('express-async-errors')
 /* ------------------------------------------------------- */
+const cors = require('cors');
+app.use(cors({origin:'http://localhost:3000'}));
 //? ************************************************************ */
 const mongoDb = require('./src/dbConnection')
 mongoDb()
@@ -31,8 +33,8 @@ app.get('/', (req,res) => {
 //? ************************************************************ */
 //? ************************************************************ */
 //? ************************************************************ */
-// const routes = require('./src/routes/toDoAppRoutes')
-// app.use(routes)
+const routes = require('./src/routes/toDoRoutes')
+app.use('/todo',routes)
 //? ************************************************************ */
 const errorHandler = require('./src/middlewares/errorHandle')
 app.use(errorHandler)

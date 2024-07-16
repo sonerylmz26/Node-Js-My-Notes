@@ -25,7 +25,7 @@ const TutorialList = ({ tutorials, getTutorials }) => {
   //     description: "JS library for UI design",
   //   },
   // ]
-  const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials"
+  const BASE_URL = "http://127.0.0.1:3003/todo/"
 
   const handleDelete = async (id) => {
     try {

@@ -16,7 +16,7 @@ const AddTutorial = ({ getTutorials }) => {
   }
 
   const postTutorial = async (newTutor) => {
-    const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials/"
+    const BASE_URL = "http://127.0.0.1:3003/todo/"
     try {
       const res = await axios.post(BASE_URL, newTutor)
       console.log(res)
