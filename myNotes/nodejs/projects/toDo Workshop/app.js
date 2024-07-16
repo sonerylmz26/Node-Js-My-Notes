@@ -13,8 +13,8 @@ app.use(express.json())
 require('express-async-errors')
 /* ------------------------------------------------------- */
 //? ************************************************************ */
-// const mongoDb = require('./src/dbConnection')
-// mongoDb()
+const mongoDb = require('./src/dbConnection')
+mongoDb()
 //? ************************************************************ */
 require('dotenv').config()
 const PORT = process.env.PORT || 3002;
@@ -34,8 +34,8 @@ app.get('/', (req,res) => {
 // const routes = require('./src/routes/toDoAppRoutes')
 // app.use(routes)
 //? ************************************************************ */
-// const errorHandler = require('./src/middlewares/errrorHandler')
-// app.use(errorHandler)
+const errorHandler = require('./src/middlewares/errorHandle')
+app.use(errorHandler)
 //? ************************************************************ */
 
 app.listen(PORT, () => {
