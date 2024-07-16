@@ -17,11 +17,11 @@ mongoDb()
 require('dotenv').config()
 const PORT = process.env.PORT || 3002;
 //? ************************************************************ */
-app.get('/', (req,res) => {
-  res.send({
-    message:'Welcome Todo App with MongoDB'
-  })
-})
+// app.get('/', (req,res) => {
+//   res.send({
+//     message:'Welcome Todo App with MongoDB'
+//   })
+// })
 
 
 
@@ -29,6 +29,8 @@ app.get('/', (req,res) => {
 //? ************************************************************ */
 //? ************************************************************ */
 //? ************************************************************ */
+const routes = require('./src/routes/toDoAppRoutes')
+app.use(routes)
 //? ************************************************************ */
 const errorHandler = require('./src/middlewares/errrorHandler')
 app.use(errorHandler)
