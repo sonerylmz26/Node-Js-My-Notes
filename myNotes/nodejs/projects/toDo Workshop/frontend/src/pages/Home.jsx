@@ -7,7 +7,7 @@ const Home = () => {
   const [tutorials, setTutorials] = useState([])
 
   const getTutorials = async () => {
-    const BASE_URL = "http://127.0.0.1:3003/todo/"
+    const BASE_URL = "http://127.0.0.1:3000/todo/"
     try {
       // const res = await axios(BASE_URL)
       // setTutorials(res.data)

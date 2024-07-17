@@ -13,13 +13,13 @@ app.use(express.json())
 require('express-async-errors')
 /* ------------------------------------------------------- */
 const cors = require('cors');
-app.use(cors({origin:'http://localhost:3000'}));
+app.use(cors({origin:'http://localhost:3001'}));
 //? ************************************************************ */
 const mongoDb = require('./src/dbConnection')
 mongoDb()
 //? ************************************************************ */
 require('dotenv').config()
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3000;
 //? ************************************************************ */
 app.get('/', (req,res) => {
   res.send({
