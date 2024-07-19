@@ -8,7 +8,7 @@ const app = express();
 
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
-
+require('express-async-errors')
 /* ------------------------------------------------------- */
 
 app.use(express.json())
@@ -36,7 +36,8 @@ app.all('/', (req, res) => {
 // Routes:
 
 app.use('/blog', require('./src/routes/blogRouter'))
-/* ------------------------------------------------------- */
+app.use('/user', require('./src/routes/userRouter'))
+/* ------'------------------------------------------------- */
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
 
