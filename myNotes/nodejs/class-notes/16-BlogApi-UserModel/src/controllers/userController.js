@@ -32,47 +32,33 @@ module.exports.user = {
     //read:
     
     read: async (req,res) => {
-    const categoryId = req.params.categoryId
-    console.log(categoryId)
-    // const  data = await BlogCategory.findOne({_id:categoryId})
     
-    const  data = await User.findOne({_id:req.params.categoryId}).collation({ locale: 'en', strength: 2 });
+    const  data = await User.findOne({_id:req.params.userId}).collation({ locale: 'en', strength: 2 });
     
     res.status(200).send({
       error: false,
       result: data
     })
-    // if (categoryId) {
-    //   res.status(200).send({
-    //     error: false,
-    //     result: data
-    //   })
-    // }else{
-    //   res.status(404).send({
-    //     error: true,
-    //    message: 'it cannot FIND categoryID'
-    //   })
-    // }
-    
+
     },
     
     /* ------------------------------------------------------- */
     //update:
     update : async (req,res) => {
       // const data = await BlogCategory.updateOne({ ...filter }, { ...data })
-      const data = await User.updateOne({ _id: req.params.categoryId }, req.body).collation({ locale: 'en', strength: 2 })
+      const data = await User.updateOne({ _id: req.params.cuserId }, req.body, { runValidators: true }).collation({ locale: 'en', strength: 2 })
       // const data = await BlogCategory.findByIdAndUpdate(req.params.categoryId, req.body) onerilmiyor cunku findById zaten arkaplanda findOne yapiyor.
     res.status(202).send({
       error: false,
       result: data,
-      new: await BlogCategory.findOne({_id:req.params.categoryId}).collation({ locale: 'en', strength: 2 })
+      new: await User.findOne({_id:req.params.userId}).collation({ locale: 'en', strength: 2 })
     })
     },
     /* ------------------------------------------------------- */
     //delete:
     delete: async (req, res) => {
-      const categoryId = req.params.categoryId
-    const data = await User.deleteOne({ _id: req.params.categoryId }).collation({ locale: 'en', strength: 2 })
+    
+    const data = await User.deleteOne({ _id: req.params.userId }).collation({ locale: 'en', strength: 2 })
     // res.status(200).send({
     //   error: false,
     //   result: data
@@ -93,12 +79,7 @@ module.exports.user = {
     
     }
     
-    //  else if(!categoryId){
-    //   res.errorStatusCode = 404
-    //   throw new Error('it cannot find categiryId.')
-    //   // error: true
-    
-    // }
+ 
     },
     /* ------------------------------------------------------- */
     /* ------------------------------------------------------- */
