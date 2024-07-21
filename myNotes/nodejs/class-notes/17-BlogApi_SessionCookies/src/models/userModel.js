@@ -41,7 +41,7 @@ password:{
     // set: (password) => passwordEncrypt(password) // Veri kaydederken, return edilen data kaydedilir.
     //    set: passwordEncrypt,
     set: (password) => (password.length >= 8 ?  passwordEncrypt(password) : 'wrong'),
-        validate: (password) => (password != 'wrong') // Güncelleme yaparken default olarak validate çalışmaz. // { runValidators: true }  
+        validate: (password) => (password != 'wrong') // Güncelleme yaparken default olarak validate çalışmaz. // { runValidators: true }
         // Set methodu validate methodundan önce çalışır. Dolayısı ile validate datası her zaman aynı formattadır.
         // set: (password) => {
         //     if (password.length >= 8) {
