@@ -7,6 +7,7 @@ const { User } = require('../models/userModel');
 /* ------------------------------------------------------- */
 
 const passwordEncrypt = require('../helpers/passwordEncrypt')
+
 /* ------------------------------------------------------- */
 
 module.exports.auth = {
@@ -17,8 +18,12 @@ if (email && password) {
 const user = await User.findOne({email: email})
 
 if (user) {
-
+console.log(user)
    if (user.password == passwordEncrypt(password) ) {
+      res.send({
+         message: 'login successful'
+      })
+
          //? SESSION */
 
 
