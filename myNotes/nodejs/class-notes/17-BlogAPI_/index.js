@@ -10,7 +10,10 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 require('express-async-errors')
 /* ------------------------------------------------------- */
+// cookie- session modulu
 
+
+/* ------------------------------------------------------- */
 app.use(express.json())
 /* ------------------------------------------------------- */
 // DB CONNECTION:
@@ -34,7 +37,7 @@ app.all('/', (req, res) => {
 
 /* ------------------------------------------------------- */
 // Routes:
-
+app.use('/auth', require('./src/routes/authRouter'))
 app.use('/blog', require('./src/routes/blogRouter'))
 app.use('/user', require('./src/routes/userRouter'))
 /* ------'------------------------------------------------- */
