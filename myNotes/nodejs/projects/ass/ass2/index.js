@@ -34,7 +34,7 @@ app.all('/', (req,res) => {
 /* ------------------------------------------------------- */
 //! ROUTES
 app.use('/user', require('./src/Routes/userRoutes'))
-
+app.use('/category', require('./src/Routes/productsRoutes'))
 /* ------------------------------------------------------- */
 
 app.use(require('./src/middlewares/errorHandlers'))
