@@ -30,6 +30,13 @@ app.use(session({
 }))
 
 /* ------------------------------------------------------- */
+// Middleware for check user data from session
+
+app.use(require('./src/middlewares/userControl'))
+/* ------------------------------------------------------- */
+
+
+/* ------------------------------------------------------- */
 app.use(express.json())
 /* ------------------------------------------------------- */
 // DB CONNECTION:
@@ -49,6 +56,7 @@ app.all('/', (req, res) => {
     res.send({
         message: 'WELCOME TO BLOG API',
         session: req.session,
+        user: req.user
       
       
     })
@@ -74,7 +82,7 @@ app.use('/user', require('./src/routes/userRouter'))
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
 // Catch Errors:
-app.use(require('./src/errorHandlers'))
+app.use(require('./src/middlewares/errorHandlers'))
 
 /* ------------------------------------------------------- */
 

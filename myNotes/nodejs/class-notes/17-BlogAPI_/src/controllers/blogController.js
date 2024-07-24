@@ -22,7 +22,7 @@ res.status(200).send({
 
 create: async (req,res) => {
   
-
+req.body.userId = req.user?._id
 // res.send('crete yapildi')
 
     const data = await  BlogCategory.create(req.body)
