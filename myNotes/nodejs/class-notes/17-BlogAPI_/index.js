@@ -11,7 +11,23 @@ const PORT = process.env.PORT || 8000;
 require('express-async-errors')
 /* ------------------------------------------------------- */
 // cookie- session modulu
-
+const session = require('cookie-session')
+//? ------------------------------------------------------- 
+//* sessin bir middleware dir . 
+//?({
+//? icerisine parametreler alir. secret: process.env.SECRET_KEY datayi sifrelemek icin 
+//?     maxAge: 1000 * 60 * 60 * 24 * 3 cookiye omur verdik millisaniye cinsinden 
+//? 1000 milisaniye = 1 saniye 
+//? 1000 * 60 = 1 dakika 
+//? 1000 * 60 * 60 = 1 saat
+//? 1000 * 60 * 60 * 24 = 1 gun 
+//? 1000 * 60 * 60 * 24 * 3 = 3 gun 
+//?})
+//? ------------------------------------------------------- */
+app.use(session({
+    secret: process.env.SECRET_KEY,
+    // maxAge: 1000 * 60 * 60 * 24 * 3
+}))
 
 /* ------------------------------------------------------- */
 app.use(express.json())
@@ -30,7 +46,15 @@ require('./src/dbConnection')()
 
 /* ------------------------------------------------------- */
 app.all('/', (req, res) => {
-    res.send('WELCOME TO BLOG API')
+    res.send({
+        message: 'WELCOME TO BLOG API',
+        session: req.session,
+      
+      
+    })
+    // console.log('req:' , req)
+    // console.log('****************')
+    // console.log('res: ' , res)
 })
 
 // continue from here...
