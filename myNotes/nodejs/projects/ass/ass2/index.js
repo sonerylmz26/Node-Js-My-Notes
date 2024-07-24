@@ -3,7 +3,20 @@
 const express = require('express');
 const app = express();
 
+
+
 app.use(express.json());
+/* ------------------------------------------------------- */
+
+
+const dbConnection = require('./src/config/db')
+dbConnection()
+
+// Catch error from async:
+require('express-async-errors')
+
+/* ------------------------------------------------------- */
+
 
 require('dotenv').config();
 const PORT =process.env.PORT || 3001
@@ -17,6 +30,12 @@ app.all('/', (req,res) => {
 
 
 
+
+/* ------------------------------------------------------- */
+//! ROUTES
+app.use('/user', require('./src/Routes/userRoutes'))
+
+/* ------------------------------------------------------- */
 
 app.use(require('./src/middlewares/errorHandlers'))
 app.listen(PORT, () => {
