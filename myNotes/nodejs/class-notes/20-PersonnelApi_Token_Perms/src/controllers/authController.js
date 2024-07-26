@@ -18,7 +18,7 @@ module.exports = {
             const user = await Personnel.findOne({username}) // modeldeki set metodu findOne da da calisiyor.
             if (user && user.password == passwordEncrypt(password)) {
                 if (user.isActive) {
-                    
+                    res.send('ok')
                 } else {
                     res.errorStatusCode = 401
                 throw new Error('This user is not active.')

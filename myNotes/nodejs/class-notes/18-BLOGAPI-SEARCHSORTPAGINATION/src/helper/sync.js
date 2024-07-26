@@ -11,9 +11,9 @@ module.exports = async () => {
 
     /* Exampla Data */
     // Deleted All Records:
-    await User.deleteMany().then(() => console.log(' - User Deleted All'))
-    await BlogCategory.deleteMany().then(() => console.log(' - BlogCategory Deleted All'))
-    await BlogPost.deleteMany().then(() => console.log(' - BlogPost Deleted All'))
+    await User.deleteMany().collation({ locale: 'en', strength: 2 }).then(() => console.log(' - User Deleted All'))
+    await BlogCategory.deleteMany().collation({ locale: 'en', strength: 2 }).then(() => console.log(' - BlogCategory Deleted All'))
+    await BlogPost.deleteMany().collation({ locale: 'en', strength: 2 }).then(() => console.log(' - BlogPost Deleted All'))
 
     // Example User:
     const user = await User.create({

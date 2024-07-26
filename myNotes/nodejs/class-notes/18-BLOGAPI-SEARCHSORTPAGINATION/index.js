@@ -86,4 +86,8 @@ app.use(require('./src/middlewares/errorHandlers'))
 
 /* ------------------------------------------------------- */
 
+/* ------------------------------------------------------- */
+
 app.listen(PORT, () => console.log('Running: http://127.0.0.1:' + PORT))
+
+// require('./src/helper/sync')()

@@ -61,7 +61,10 @@ content:{
 },
 
 
-
+published : {
+    type:Boolean,
+    default:true
+}
 
 },{
     collation:'blogPost',
