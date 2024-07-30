@@ -4,6 +4,12 @@
 ------------------------------------------------------- */
 const router = require('express').Router()
 /* ------------------------------------------------------- */
+const depertments = require('../controllers/department.controller')
+
+
+
+router.route('/')
+.get(depertments.list)
 
 
 

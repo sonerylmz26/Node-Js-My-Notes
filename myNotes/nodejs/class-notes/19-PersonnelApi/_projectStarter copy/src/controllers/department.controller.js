@@ -35,24 +35,26 @@ create: async (req, res) => {
       data,
     });
   },
-update: async(req,res) => {
-  
 
-    res.status(200).send(
-        {
-            error:false,
-        }
-    )
-},
-delete: async(req,res) => {
-  
+  update: async (req, res) => {
+    const data = await Department.updateOne({ _id: req.params.id }, req.body, {
+      runValidators: true,
+    });
 
-    res.status(200).send(
-        {
-            error:false,
-        }
-    )
-}
+    res.status(202).send({
+      error: false,
+      data,
+      new: await Department.findOne({ _id: req.params.id }),
+    });
+  },
+
+  delete: async (req, res) => {
+    const data = await Department.deleteOne({ _id: req.params.id });
+    res.status(data.deletedCount ? 204 : 404).send({
+      error: !data.deletedCount,
+      data,
+    });
+  },
 
 
 }

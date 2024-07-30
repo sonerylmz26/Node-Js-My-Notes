@@ -23,6 +23,8 @@ const { mongoose,
     dbConnection()
 
 // continue from here...
+// res.getModelList()
+app.use(require('../src/middlewares/findSearchSortPage'));
 /* ------------------------------------------------------- */
 app.all('/', (req,res) => {
   res.status(202).send({
@@ -33,7 +35,11 @@ message:'Welcome to PERSONALAPI'
 })
 
 /* ------------------------------------------------------- */
+//Routes
+app.use('/departments', require('./src/routes/department.router'))
 
+
+/* ------------------------------------------------------- */
 // errorHandler:
 app.use(require('./src/middlewares/errorHandler'))
 
